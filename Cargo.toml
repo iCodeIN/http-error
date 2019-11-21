@@ -1,0 +1,11 @@
+[package]
+name = "http-error"
+version = "0.1.0"
+authors = ["Markus Ast <m@rkusa.st>"]
+edition = "2018"
+
+[dependencies]
+anyhow = "1.0"
+http = "0.1"
+log = "0.4"
+warp = { git = "https://github.com/seanmonstar/warp.git" }
