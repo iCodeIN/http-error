@@ -148,7 +148,6 @@ macro_rules! not_found {
     });
 }
 
-
 #[macro_export]
 macro_rules! bad_request {
     () => ({
@@ -159,5 +158,18 @@ macro_rules! bad_request {
     });
     ($fmt:expr, $($arg:tt)+) => ({
         ::warp::reject::custom($crate::HttpError::new(::reqwest::StatusCode::BAD_REQUEST).with_message(format!($fmt, $($arg)+)))
+    });
+}
+
+#[macro_export]
+macro_rules! forbidden {
+    () => ({
+        ::warp::reject::custom($crate::HttpError::new(::reqwest::StatusCode::FORBIDDEN))
+    });
+    ($msg:expr) => ({
+        ::warp::reject::custom($crate::HttpError::new(::reqwest::StatusCode::FORBIDDEN).with_message($msg))
+    });
+    ($fmt:expr, $($arg:tt)+) => ({
+        ::warp::reject::custom($crate::HttpError::new(::reqwest::StatusCode::FORBIDDEN).with_message(format!($fmt, $($arg)+)))
     });
 }
