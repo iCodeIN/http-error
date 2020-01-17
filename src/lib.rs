@@ -31,7 +31,6 @@ pub async fn recover(err: warp::Rejection) -> Result<impl warp::Reply, warp::Rej
     }
 }
 
-
 impl HttpError {
     pub fn new(status: StatusCode) -> Self {
         HttpError {
@@ -138,38 +137,38 @@ impl From<anyhow::Error> for HttpError {
 #[macro_export]
 macro_rules! not_found {
     () => ({
-        ::warp::reject::custom($crate::HttpError::new(::reqwest::StatusCode::NOT_FOUND))
+        ::warp::reject::custom($crate::HttpError::new(::http::StatusCode::NOT_FOUND))
     });
     ($msg:expr) => ({
-        ::warp::reject::custom($crate::HttpError::new(::reqwest::StatusCode::NOT_FOUND).with_message($msg))
+        ::warp::reject::custom($crate::HttpError::new(::http::StatusCode::NOT_FOUND).with_message($msg))
     });
     ($fmt:expr, $($arg:tt)+) => ({
-        ::warp::reject::custom($crate::HttpError::new(::reqwest::StatusCode::NOT_FOUND).with_message(format!($fmt, $($arg)+)))
+        ::warp::reject::custom($crate::HttpError::new(::http::StatusCode::NOT_FOUND).with_message(format!($fmt, $($arg)+)))
     });
 }
 
 #[macro_export]
 macro_rules! bad_request {
     () => ({
-        ::warp::reject::custom($crate::HttpError::new(::reqwest::StatusCode::BAD_REQUEST))
+        ::warp::reject::custom($crate::HttpError::new(::http::StatusCode::BAD_REQUEST))
     });
     ($msg:expr) => ({
-        ::warp::reject::custom($crate::HttpError::new(::reqwest::StatusCode::BAD_REQUEST).with_message($msg))
+        ::warp::reject::custom($crate::HttpError::new(::http::StatusCode::BAD_REQUEST).with_message($msg))
     });
     ($fmt:expr, $($arg:tt)+) => ({
-        ::warp::reject::custom($crate::HttpError::new(::reqwest::StatusCode::BAD_REQUEST).with_message(format!($fmt, $($arg)+)))
+        ::warp::reject::custom($crate::HttpError::new(::http::StatusCode::BAD_REQUEST).with_message(format!($fmt, $($arg)+)))
     });
 }
 
 #[macro_export]
 macro_rules! forbidden {
     () => ({
-        ::warp::reject::custom($crate::HttpError::new(::reqwest::StatusCode::FORBIDDEN))
+        ::warp::reject::custom($crate::HttpError::new(::http::StatusCode::FORBIDDEN))
     });
     ($msg:expr) => ({
-        ::warp::reject::custom($crate::HttpError::new(::reqwest::StatusCode::FORBIDDEN).with_message($msg))
+        ::warp::reject::custom($crate::HttpError::new(::http::StatusCode::FORBIDDEN).with_message($msg))
     });
     ($fmt:expr, $($arg:tt)+) => ({
-        ::warp::reject::custom($crate::HttpError::new(::reqwest::StatusCode::FORBIDDEN).with_message(format!($fmt, $($arg)+)))
+        ::warp::reject::custom($crate::HttpError::new(::http::StatusCode::FORBIDDEN).with_message(format!($fmt, $($arg)+)))
     });
 }
