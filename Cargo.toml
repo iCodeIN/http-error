@@ -8,4 +8,4 @@ edition = "2018"
 anyhow = "1.0"
 http = "0.2"
 log = "0.4"
-warp = { git = "https://github.com/seanmonstar/warp.git"  }
+warp = "0.2"
