@@ -13,8 +13,8 @@ pub struct HttpError {
 
 pub async fn recover(err: warp::Rejection) -> Result<impl warp::Reply, warp::Rejection> {
     if let Some(ref err) = err.find::<HttpError>() {
-        error!("{}", err);
         if let Some(err) = err.cause() {
+            error!("{}", err);
             for cause in err.chain() {
                 error!("  -> {}", cause);
             }
