@@ -3,6 +3,7 @@ extern crate log;
 
 use http::StatusCode;
 use std::{error, fmt};
+use warp::Rejection;
 
 #[derive(Debug)]
 pub struct HttpError {
@@ -147,6 +148,12 @@ impl From<anyhow::Error> for HttpError {
             message: None,
             cause: Some(err),
         }
+    }
+}
+
+impl From<HttpError> for Rejection {
+    fn from(err: HttpError) -> Self {
+        warp::reject::custom(err)
     }
 }
 
