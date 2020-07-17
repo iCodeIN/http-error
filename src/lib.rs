@@ -134,6 +134,10 @@ pub fn forbidden() -> HttpError {
     HttpError::new(StatusCode::FORBIDDEN)
 }
 
+pub fn internal_server_error(err: impl Into<anyhow::Error>) -> HttpError {
+    HttpError::new(StatusCode::INTERNAL_SERVER_ERROR).with_cause(err)
+}
+
 impl warp::reject::Reject for HttpError {}
 
 impl fmt::Display for HttpError {
