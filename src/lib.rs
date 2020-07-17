@@ -122,18 +122,6 @@ pub fn ok() -> HttpError {
     HttpError::new(StatusCode::OK)
 }
 
-pub fn not_found() -> HttpError {
-    HttpError::new(StatusCode::NOT_FOUND)
-}
-
-pub fn bad_request() -> HttpError {
-    HttpError::new(StatusCode::BAD_REQUEST)
-}
-
-pub fn forbidden() -> HttpError {
-    HttpError::new(StatusCode::FORBIDDEN)
-}
-
 pub fn internal_server_error(err: impl Into<anyhow::Error>) -> HttpError {
     HttpError::new(StatusCode::INTERNAL_SERVER_ERROR).with_cause(err)
 }
